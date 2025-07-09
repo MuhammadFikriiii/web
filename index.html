@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pernikahan Fulan & Wulan</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Feather Icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+
+    <!-- EmailJS SDK -->
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
+    ></script>
+
+    <script>
+      /* Konfigurasi warna tema di Tailwind */
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              cream: "#FFF8F0",
+              "dusty-pink": "#D8A7B1",
+              "rose-gold": "#B76E79",
+              "text-main": "#4B4B4B",
+              "text-light": "#6D6D6D",
+            },
+            fontFamily: {
+              sans: ["Montserrat", "sans-serif"],
+              script: ["Great Vibes", "cursive"],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      /* Latar belakang dengan pola bunga lembut */
+      body {
+        background-color: #fff8f0;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23d8a7b1' fill-opacity='0.1'%3E%3Cpath opacity='.5' d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h4v-9H0v-1h4v-9H0v-1h4v-9H0v-1h4v-9H0v-1h4v-9H0v-1h4v-9H0v-1h4v-9H0v-1h4v-9H0v-1h5v-4h1v4h9v-4h1v4h9v-4h1v4h9v-4h1v4h9v-4h1v4h9v-4h1v4h9v-4h1v4h9v-4h1v4h5v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      }
+
+      /* Animasi untuk fade-in */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .fade-in {
+        animation: fadeIn 1s ease-out forwards;
+        opacity: 0;
+      }
+
+      /* Styling untuk galeri */
+      .gallery-item {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .gallery-item:hover {
+        transform: scale(1.05);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .map-tab.active {
+        background-color: #b76e79;
+        color: white;
+      }
+
+      /* Styling untuk Notifikasi Toast */
+      .toast-notification {
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 1rem 2rem;
+        border-radius: 0.5rem;
+        color: white;
+        z-index: 1000;
+        opacity: 0;
+        transition: opacity 0.5s, top 0.5s;
+        animation: fadeInToast 0.5s forwards;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      }
+      .toast-notification.success {
+        background-color: #b76e79; /* rose-gold */
+      }
+      .toast-notification.error {
+        background-color: #d9534f; /* A generic error red */
+      }
+      @keyframes fadeInToast {
+        from {
+          top: -50px;
+          opacity: 0;
+        }
+        to {
+          top: 20px;
+          opacity: 1;
+        }
+      }
+
+      /* Tombol Musik */
+      #music-button {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: #b76e79;
+        color: white;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        z-index: 1000;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      }
+    </style>
+  </head>
+  <body class="font-sans text-text-main">
+    <div class="w-full overflow-x-hidden">
+      <!-- Bagian Header -->
+      <header
+        class="text-center min-h-screen flex flex-col justify-center items-center p-8 bg-cover bg-center relative"
+        style="
+          background-image: linear-gradient(
+              rgba(255, 248, 240, 0.8),
+              rgba(255, 248, 240, 0.9)
+            ),
+            url('https://images.unsplash.com/photo-1523438885200-e635ba2c371e?q=80&w=2070&auto=format&fit=crop');
+        "
+      >
+        <div class="fade-in">
+          <p class="text-lg md:text-xl text-rose-gold mb-4">The Wedding Of</p>
+          <h1 class="font-script text-7xl md:text-9xl text-rose-gold">
+            Fulan & Wulan
+          </h1>
+          <p class="text-xl md:text-2xl text-text-main mt-6">
+            Sabtu, 25 Oktober 2025
+          </p>
+        </div>
+      </header>
+
+      <!-- Bagian Pasangan -->
+      <section id="couple" class="py-20 px-8 text-center">
+        <div class="max-w-4xl mx-auto">
+          <p class="max-w-2xl mx-auto leading-relaxed text-text-light fade-in">
+            "Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan
+            untukmu isteri-isteri dari jenismu sendiri, supaya kamu cenderung
+            dan merasa tenteram kepadanya, dan dijadikan-Nya diantaramu rasa
+            kasih dan sayang."
+            <br />
+            <span class="font-bold text-text-main mt-2 block"
+              >(QS. Ar-Rum: 21)</span
+            >
+          </p>
+          <div
+            class="mt-16 grid md:grid-cols-2 gap-12 items-center max-w-3xl mx-auto"
+          >
+            <div class="text-center fade-in" style="animation-delay: 200ms">
+              <img
+                src="https://images.unsplash.com/photo-1595217485362-7a55598cfe90?q=80&w=1887&auto=format&fit=crop"
+                alt="Fulan"
+                class="rounded-full w-48 h-48 mx-auto shadow-lg border-4 object-cover border-white transform hover:scale-105 transition-transform duration-300"
+                onerror="this.onerror=null;this.src='https://placehold.co/400x400/D8A7B1/FFF8F0?text=Fulan';"
+              />
+              <h3 class="font-script text-5xl text-rose-gold mt-6">Fulan</h3>
+              <p class="text-text-light mt-2">
+                Putra dari Bapak Fulan Sr. & Ibu Fulanah
+              </p>
+            </div>
+            <div class="text-center fade-in" style="animation-delay: 400ms">
+              <img
+                src="https://images.unsplash.com/photo-1588072432836-e10032774350?q=80&w=1772&auto=format&fit=crop"
+                alt="Wulan"
+                class="rounded-full w-48 h-48 mx-auto shadow-lg border-4 object-cover border-white transform hover:scale-105 transition-transform duration-300"
+                onerror="this.onerror=null;this.src='https://placehold.co/400x400/D8A7B1/FFF8F0?text=Wulan';"
+              />
+              <h3 class="font-script text-5xl text-rose-gold mt-6">Wulan</h3>
+              <p class="text-text-light mt-2">
+                Putri dari Bapak Wulan Sr. & Ibu Wulanah
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Bagian Hitung Mundur -->
+      <section id="countdown" class="py-20 px-8 bg-dusty-pink/20">
+        <div class="text-center max-w-2xl mx-auto">
+          <h2 class="font-script text-5xl text-rose-gold mb-8 fade-in">
+            Menuju Hari Bahagia
+          </h2>
+          <div
+            id="countdown-timer"
+            class="grid grid-cols-4 gap-4 text-center fade-in"
+            style="animation-delay: 200ms"
+          >
+            <div class="bg-white/50 p-4 rounded-lg shadow-md">
+              <div id="days" class="text-4xl font-bold text-rose-gold">0</div>
+              <div class="text-sm text-text-light">Hari</div>
+            </div>
+            <div class="bg-white/50 p-4 rounded-lg shadow-md">
+              <div id="hours" class="text-4xl font-bold text-rose-gold">0</div>
+              <div class="text-sm text-text-light">Jam</div>
+            </div>
+            <div class="bg-white/50 p-4 rounded-lg shadow-md">
+              <div id="minutes" class="text-4xl font-bold text-rose-gold">
+                0
+              </div>
+              <div class="text-sm text-text-light">Menit</div>
+            </div>
+            <div class="bg-white/50 p-4 rounded-lg shadow-md">
+              <div id="seconds" class="text-4xl font-bold text-rose-gold">
+                0
+              </div>
+              <div class="text-sm text-text-light">Detik</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Bagian Detail Acara & Lokasi -->
+      <section id="details" class="py-20 px-8">
+        <div
+          class="max-w-4xl mx-auto bg-white/60 p-8 md:p-12 rounded-xl shadow-lg"
+        >
+          <h2
+            class="font-script text-6xl text-rose-gold mb-12 text-center fade-in"
+          >
+            Save The Date
+          </h2>
+          <div class="grid md:grid-cols-2 gap-12">
+            <div class="text-center fade-in" style="animation-delay: 200ms">
+              <div class="text-rose-gold mx-auto mb-4">
+                <i data-feather="sun" class="w-16 h-16"></i>
+              </div>
+              <h3 class="text-3xl font-bold text-rose-gold mb-2">Akad Nikah</h3>
+              <p class="text-text-light">Sabtu, 25 Oktober 2025</p>
+              <p class="text-text-light">09:00 - 11:00 WIB</p>
+              <p class="mt-2 font-semibold">Masjid Istiqlal, Jakarta</p>
+            </div>
+            <div class="text-center fade-in" style="animation-delay: 400ms">
+              <div class="text-rose-gold mx-auto mb-4">
+                <i data-feather="heart" class="w-16 h-16"></i>
+              </div>
+              <h3 class="text-3xl font-bold text-rose-gold mb-2">Resepsi</h3>
+              <p class="text-text-light">Sabtu, 25 Oktober 2025</p>
+              <p class="text-text-light">13:00 - 17:00 WIB</p>
+              <p class="mt-2 font-semibold">Gedung Balai Kartini, Jakarta</p>
+            </div>
+          </div>
+          <!-- Bagian Peta Dinamis -->
+          <div class="mt-12 fade-in" style="animation-delay: 600ms">
+            <div
+              class="flex justify-center mb-4 rounded-lg bg-dusty-pink/30 p-1"
+            >
+              <button
+                id="tab-akad"
+                class="map-tab flex-1 p-2 rounded-md transition-colors duration-300"
+              >
+                Akad Nikah
+              </button>
+              <button
+                id="tab-resepsi"
+                class="map-tab flex-1 p-2 rounded-md transition-colors duration-300"
+              >
+                Resepsi
+              </button>
+            </div>
+            <div
+              class="relative w-full h-[400px] shadow-lg rounded-lg overflow-hidden"
+            >
+              <iframe
+                id="map-akad"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.4091700110266!2d106.82949007587047!3d-6.169969660454265!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f5c12fd086b1%3A0x3ad1cbeaa32e0f96!2sMasjid%20Istiqlal!5e0!3m2!1sen!2sid!4v1654095835145!5m2!1sen!2sid"
+                class="absolute top-0 left-0 w-full h-full"
+                style="border: 0"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+              >
+              </iframe>
+              <iframe
+                id="map-resepsi"
+                class="absolute top-0 left-0 w-full h-full hidden"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.287739561008!2d106.8123240758706!3d-6.225700160975778!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f14841555555%3A0x258488960580343!2sBalai%20Kartini!5e0!3m2!1sen!2sid!4v1720521639893!5m2!1sen!2sid"
+                style="border: 0"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+              >
+              </iframe>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Galeri -->
+      <section id="gallery" class="py-20 px-8">
+        <div class="max-w-5xl mx-auto">
+          <h2
+            class="font-script text-6xl text-rose-gold mb-12 text-center fade-in"
+          >
+            Momen Bahagia
+          </h2>
+          <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+            <div class="fade-in" style="animation-delay: 100ms">
+              <img
+                src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?q=80&w=2070&auto=format&fit=crop"
+                alt="Galeri 1"
+                class="rounded-lg shadow-md gallery-item object-cover w-full h-full"
+                onerror="this.onerror=null;this.src='https://placehold.co/600x800';"
+              />
+            </div>
+            <div class="fade-in" style="animation-delay: 200ms">
+              <img
+                src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?q=80&w=2070&auto=format&fit=crop"
+                alt="Galeri 2"
+                class="rounded-lg shadow-md gallery-item object-cover w-full h-full"
+                onerror="this.onerror=null;this.src='https://placehold.co/600x400';"
+              />
+            </div>
+            <div class="fade-in" style="animation-delay: 300ms">
+              <img
+                src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?q=80&w=2070&auto=format&fit=crop"
+                alt="Galeri 3"
+                class="rounded-lg shadow-md gallery-item object-cover w-full h-full"
+                onerror="this.onerror=null;this.src='https://placehold.co/600x800';"
+              />
+            </div>
+            <div class="fade-in" style="animation-delay: 400ms">
+              <img
+                src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?q=80&w=2070&auto=format&fit=crop"
+                alt="Galeri 4"
+                class="rounded-lg shadow-md gallery-item object-cover w-full h-full"
+                onerror="this.onerror=null;this.src='https://placehold.co/600x400';"
+              />
+            </div>
+            <div class="fade-in" style="animation-delay: 500ms">
+              <img
+                src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?q=80&w=2070&auto=format&fit=crop"
+                alt="Galeri 5"
+                class="rounded-lg shadow-md gallery-item object-cover w-full h-full"
+                onerror="this.onerror=null;this.src='https://placehold.co/600x800';"
+              />
+            </div>
+            <div class="fade-in" style="animation-delay: 600ms">
+              <img
+                src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?q=80&w=2070&auto=format&fit=crop"
+                alt="Galeri 6"
+                class="rounded-lg shadow-md gallery-item object-cover w-full h-full"
+                onerror="this.onerror=null;this.src='https://placehold.co/600x400';"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Bagian RSVP -->
+      <section id="rsvp" class="py-20 px-8 bg-dusty-pink/20">
+        <div class="max-w-4xl mx-auto">
+          <h2
+            class="font-script text-6xl text-rose-gold mb-4 text-center fade-in"
+          >
+            Konfirmasi Kehadiran
+          </h2>
+          <p
+            class="mb-8 max-w-lg mx-auto text-center text-text-light fade-in"
+            style="animation-delay: 200ms"
+          >
+            Kehadiran Anda adalah kebahagiaan bagi kami. Mohon isi form di bawah
+            ini untuk mengkonfirmasi.
+          </p>
+          <form
+            id="rsvp-form"
+            class="max-w-md mx-auto space-y-4 bg-white/50 p-8 rounded-lg shadow-lg fade-in"
+            style="animation-delay: 400ms"
+          >
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Nama Anda"
+              required
+              class="w-full p-3 border-2 border-dusty-pink rounded-lg focus:ring-rose-gold focus:border-rose-gold transition bg-cream"
+            />
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Email Anda"
+              required
+              class="w-full p-3 border-2 border-dusty-pink rounded-lg focus:ring-rose-gold focus:border-rose-gold transition bg-cream"
+            />
+            <input
+              type="number"
+              id="guests"
+              name="guests"
+              placeholder="Jumlah Tamu"
+              min="1"
+              required
+              class="w-full p-3 border-2 border-dusty-pink rounded-lg focus:ring-rose-gold focus:border-rose-gold transition bg-cream"
+            />
+            <select
+              id="attendance"
+              name="attendance"
+              class="w-full p-3 border-2 border-dusty-pink rounded-lg focus:ring-rose-gold focus:border-rose-gold transition bg-cream"
+            >
+              <option value="Hadir">Hadir</option>
+              <option value="Tidak Hadir">Tidak Hadir</option>
+            </select>
+            <textarea
+              id="message"
+              name="message"
+              placeholder="Pesan (opsional)"
+              rows="4"
+              class="w-full p-3 border-2 border-dusty-pink rounded-lg focus:ring-rose-gold focus:border-rose-gold transition bg-cream"
+            ></textarea>
+            <button
+              type="submit"
+              id="submit-button"
+              class="relative z-10 w-full bg-[#B76E79] text-white py-3 px-6 rounded-lg hover:bg-[#b76e79]/80 transition-all duration-300 font-bold text-lg"
+            >
+              Kirim RSVP
+            </button>
+          </form>
+        </div>
+      </section>
+
+      <!-- Hadiah -->
+      <section id="gifts" class="py-20 px-8 bg-dusty-pink/20">
+        <div class="text-center max-w-2xl mx-auto">
+          <h2 class="font-script text-6xl text-rose-gold mb-4 fade-in">
+            Kirim Hadiah
+          </h2>
+          <p
+            class="mb-8 text-text-light fade-in"
+            style="animation-delay: 200ms"
+          >
+            Doa restu Anda adalah hadiah terindah bagi kami. Namun, jika Anda
+            ingin memberikan tanda kasih, kami dengan senang hati menerimanya
+            melalui tautan di bawah ini.
+          </p>
+          <div
+            class="grid grid-cols-1 md:grid-cols-2 gap-4 fade-in"
+            style="animation-delay: 400ms"
+          >
+            <div class="bg-white/50 p-6 rounded-lg shadow-md">
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/BANK_BRI_logo.svg/1280px-BANK_BRI_logo.svg.png"
+                alt="Logo BRI"
+                class="h-8 mx-auto mb-4"
+              />
+              <p class="font-bold text-text-main">Bank BRI</p>
+              <p class="text-text-light">a/n Fulan</p>
+              <p
+                id="bri-account"
+                class="text-lg font-semibold text-rose-gold mt-2"
+              >
+                1234-567-890123
+              </p>
+              <button
+                onclick="copyToClipboard('bri-account', this)"
+                class="mt-2 bg-[#B76E79]/80 text-white text-sm py-1 px-3 rounded-full hover:bg-[#B76E79] transition-colors"
+              >
+                Salin No. Rek
+              </button>
+            </div>
+            <div class="bg-white/50 p-6 rounded-lg shadow-md">
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Bank_Mandiri_logo_2016.svg/2560px-Bank_Mandiri_logo_2016.svg.png"
+                alt="Logo Mandiri"
+                class="h-8 mx-auto mb-4"
+              />
+              <p class="font-bold text-text-main">Bank Mandiri</p>
+              <p class="text-text-light">a/n Wulan</p>
+              <p
+                id="mandiri-account"
+                class="text-lg font-semibold text-rose-gold mt-2"
+              >
+                0987-654-321098
+              </p>
+              <button
+                onclick="copyToClipboard('mandiri-account', this)"
+                class="mt-2 bg-[#B76E79]/80 text-white text-sm py-1 px-3 rounded-full hover:bg-[#B76E79] transition-colors"
+              >
+                Salin No. Rek
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="text-center py-16 px-8">
+        <div class="max-w-4xl mx-auto">
+          <p class="text-text-light mb-4">
+            Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Anda
+            berkenan hadir untuk memberikan doa restu.
+          </p>
+          <p class="font-script text-4xl text-rose-gold mb-2">Terima Kasih</p>
+          <p class="mt-4 font-bold text-3xl font-script text-rose-gold">
+            Fulan & Wulan
+          </p>
+        </div>
+      </footer>
+    </div>
+
+    <!-- Audio Player -->
+    <audio id="background-music" loop>
+      <source
+        src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
+        type="audio/mpeg"
+      />
+      Browser Anda tidak mendukung elemen audio.
+    </audio>
+    <button id="music-button">
+      <i data-feather="play"></i>
+    </button>
+
+    <!-- Logic Script -->
+    <script>
+      // --- Fungsi Notifikasi ---
+      function showNotification(message, type = "success") {
+        const existingToast = document.querySelector(".toast-notification");
+        if (existingToast) {
+          existingToast.remove();
+        }
+
+        const toast = document.createElement("div");
+        toast.className = `toast-notification ${type}`;
+        toast.textContent = message;
+
+        document.body.appendChild(toast);
+
+        setTimeout(() => {
+          toast.style.opacity = "0";
+          setTimeout(() => toast.remove(), 500);
+        }, 3000);
+      }
+
+      // --- EmailJS Logic ---
+      (function () {
+        // Public Key Anda dari akun EmailJS
+        emailjs.init({
+          publicKey: "1N1IaaLosF28CxVAa",
+        });
+      })();
+
+      const rsvpForm = document.getElementById("rsvp-form");
+      if (rsvpForm) {
+        rsvpForm.addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          const btn = document.getElementById("submit-button");
+          btn.disabled = true;
+          btn.textContent = "Mengirim...";
+
+          const serviceID = "service_btem0w9";
+          const templateID = "template_wknyius";
+
+          // Mengambil waktu saat ini dengan zona waktu yang benar (WITA)
+          const now = new Date();
+          const options = {
+            timeZone: "Asia/Makassar",
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit",
+            hour12: false,
+          };
+          const formattedTime = new Intl.DateTimeFormat(
+            "id-ID",
+            options
+          ).format(now);
+
+          const templateParams = {
+            name: document.getElementById("name").value,
+            email: document.getElementById("email").value,
+            guests: document.getElementById("guests").value,
+            attendance: document.getElementById("attendance").value,
+            message: document.getElementById("message").value,
+            time: formattedTime,
+          };
+
+          emailjs
+            .send(serviceID, templateID, templateParams)
+            .then(
+              () => {
+                showNotification(
+                  "Terima kasih! Konfirmasi Anda telah kami kirim.",
+                  "success"
+                );
+                rsvpForm.reset();
+              },
+              (err) => {
+                showNotification(
+                  "Maaf, gagal mengirim RSVP. Silakan coba lagi.",
+                  "error"
+                );
+                console.error("EmailJS error:", JSON.stringify(err));
+              }
+            )
+            .finally(() => {
+              btn.disabled = false;
+              btn.textContent = "Kirim RSVP";
+            });
+        });
+      }
+
+      // --- Fungsi Hitung Mundur ---
+      function startCountdown() {
+        const weddingDate = new Date("Oct 25, 2025 09:00:00").getTime();
+        const timer = setInterval(() => {
+          const now = new Date().getTime();
+          const distance = weddingDate - now;
+
+          if (distance < 0) {
+            clearInterval(timer);
+            document.getElementById("countdown-timer").innerHTML =
+              '<p class="col-span-4 text-2xl text-rose-gold font-script">The day is here!</p>';
+            return;
+          }
+
+          document.getElementById("days").innerText = Math.floor(
+            distance / (1000 * 60 * 60 * 24)
+          );
+          document.getElementById("hours").innerText = Math.floor(
+            (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+          );
+          document.getElementById("minutes").innerText = Math.floor(
+            (distance % (1000 * 60 * 60)) / (1000 * 60)
+          );
+          document.getElementById("seconds").innerText = Math.floor(
+            (distance % (1000 * 60)) / 1000
+          );
+        }, 1000);
+      }
+      startCountdown();
+
+      // --- Fungsi Salin ke Clipboard ---
+      window.copyToClipboard = function (elementId, button) {
+        const originalText = button.innerHTML;
+        const textToCopy = document.getElementById(elementId).innerText;
+        const tempInput = document.createElement("input");
+        tempInput.value = textToCopy;
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        document.execCommand("copy");
+        document.body.removeChild(tempInput);
+
+        showNotification("Nomor rekening berhasil disalin!", "success");
+        button.textContent = "Tersalin!";
+        setTimeout(() => {
+          button.innerHTML = originalText;
+        }, 2000);
+      };
+
+      // --- Kontrol Musik ---
+      const musicButton = document.getElementById("music-button");
+      const backgroundMusic = document.getElementById("background-music");
+      let isPlaying = false;
+
+      musicButton.addEventListener("click", () => {
+        if (isPlaying) {
+          backgroundMusic.pause();
+          musicButton.innerHTML = '<i data-feather="play"></i>';
+        } else {
+          backgroundMusic.play();
+          musicButton.innerHTML = '<i data-feather="pause"></i>';
+        }
+        isPlaying = !isPlaying;
+        feather.replace();
+      });
+
+      // --- Map Tab Logic ---
+      const tabAkad = document.getElementById("tab-akad");
+      const tabResepsi = document.getElementById("tab-resepsi");
+      const mapAkad = document.getElementById("map-akad");
+      const mapResepsi = document.getElementById("map-resepsi");
+
+      tabAkad.classList.add("active");
+
+      tabAkad.addEventListener("click", () => {
+        tabAkad.classList.add("active");
+        tabResepsi.classList.remove("active");
+        mapAkad.classList.remove("hidden");
+        mapResepsi.classList.add("hidden");
+      });
+
+      tabResepsi.addEventListener("click", () => {
+        tabResepsi.classList.add("active");
+        tabAkad.classList.remove("active");
+        mapResepsi.classList.remove("hidden");
+        mapAkad.classList.add("hidden");
+      });
+
+      // --- Inisialisasi Ikon ---
+      feather.replace();
+    </script>
+  </body>
+</html>
